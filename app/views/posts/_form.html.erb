@@ -1,9 +1,14 @@
 <%= form_for post do |f| %>
   <%= f.label :title%>
   <%= f.text_field :title %><br>
+
   <%= f.label :body %>
   <%= f.text_field :body %><br>
-  <%= f.label 'Form Tags' %><br>
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
 
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br>
+
+  <%= f.label 'Form Category' %><br>
+  <%= f.collection_radio_buttons(:category_id, Category.all, :id, :name) %>
+  <%= f.submit %>
 <% end %>

@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+<p>
+  <%= @post.body %>
+</p>
+<p>Tags:</p>
+<p>
+  <% @post.tags.each do |tag| %>
+    <%= tag.name %>
+  <% end %>
+</p>
+<p>Category:</p>
+<p>
+  <%= @post.category.name %>
+</p>
+<%= link_to "Go Back", root_path %>
