@@ -1,14 +1,103 @@
+<h2>Form Category - Radio</h2>
 <%= form_for post do |f| %>
   <%= f.label :title%>
-  <%= f.text_field :title %><br>
+  <%= f.text_field :title %><br><br>
 
   <%= f.label :body %>
-  <%= f.text_field :body %><br>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
 
   <%= f.label 'Form Tags' %><br>
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br><br>
 
-  <%= f.label 'Form Category' %><br>
-  <%= f.collection_radio_buttons(:category_id, Category.all, :id, :name) %>
+  <%= f.label 'Form Category - Radio' %><br>
+  <%= f.collection_radio_buttons(:category_id, Category.all, :id, :name) %><br><br>
+
+  <%= f.submit %>
+<% end %>
+<hr>
+
+<h2>Form Category - Select</h2>
+<%= form_for post do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
+
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br><br>
+
+  <%= f.label 'Form Category - Select' %><br>
+  <%= f.select(:category_id, options_for_select(Category.all.map {|c| [c.name, c.id]})).html_safe %><br><br>
+
+<% end %>
+<hr>
+
+<h2>Form Category - Select Tag</h2>
+<%= form_for post do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
+
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br><br>
+
+  <%= f.label 'Form Category - Select Tag' %><br>
+  <%= select_tag(:post, options_for_select(Category.all.map {|c| [c.name, c.id]})).html_safe %><br><br>
+
+  <%= f.submit %>
+<% end %>
+<hr>
+
+<h2>Form Category - Select Collection</h2>
+<%= form_for post do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
+
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br><br>
+
+  <%= f.label 'Form Category - Collection Select' %><br>
+  <%= f.collection_select(:category_id, Category.all, :id, :name) %><br><br>
+
+  <%= f.submit %>
+<% end %>
+<hr>
+<h2>Form Category - Select Collection Tag</h2>
+<%= form_for post do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
+
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br><br>
+
+  <%= f.label 'Form Category - Collection Select Tag' %><br>
+  <%= collection_select(:post, :category_id, Category.all, :id, :name) %><br><br>
+
+  <%= f.submit %>
+<% end %>
+
+<h2>Form Category - MultiSelect Tags</h2>
+<%= form_for post, html: { id: 'cool_beans' } do |f| %>
+  <%= f.label :title%>
+  <%= f.text_field :title %><br><br>
+
+  <%= f.label :body %>
+  <%= f.text_area :body, rows: 5, cols: 30 %><br><br>
+
+  <%= f.label 'Form Tags' %><br>
+  <%= f.collection_select(:tag_ids, Tag.all, :id, :name, {}, multiple: true, class: 'multi-select') %><br><br>
+
+  <%= f.label 'Form Category - Collection Select' %><br>
+  <%= f.collection_select(:category_id, Category.all, :id, :name, include_blank: true) %><br><br>
+
   <%= f.submit %>
 <% end %>
